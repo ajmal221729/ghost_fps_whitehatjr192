@@ -1,0 +1,21 @@
+{
+  "name": "aframe-fps",
+  "description": "A-Frame First-Person Shooter",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "budo --live --verbose --port 3000 --open",
+    "build": "browserify src/index.js -o build/build.js"
+  },
+  "devDependencies": {
+    "budo": "^7.0.0"
+  },
+  "keywords": [
+    "aframe",
+    "webvr",
+    "vr"
+  ],
+  "dependencies": {
+    "ts": "0.0.0"
+  }
+}

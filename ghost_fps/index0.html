@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+      <meta http-equiv="Cache-Control" content="no-cache">
+      <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+      <!-- <script src="https://unpkg.com/aframe-animation-component@4.0.0-beta8/dist/aframe-animation-component.min.js"></script>-->
+      <script src="src/components/cursor-listener.js?v=0.12"></script>
+      <script src="src/components/raycaster-autorefresh.js"></script> 
+      <!-- <script src="src/components/game-manager.js?v=0.19"></script> -->
+      <script src="https://unpkg.com/aframe-particle-system-component@1.0.10/dist/aframe-particle-system-component.js"></script>
+      <script src="https://unpkg.com/aframe-physics-system@2.1.0/dist/aframe-physics-system.js"></script>
+      <script src="https://unpkg.com/aframe-animation-component@3.2.5/dist/aframe-animation-component.js"></script>
+      
+      <script>
+        AFRAME.registerComponent('click-listener', {
+          init: function() {
+            var clicked = false;
+            this.el.addEventListener('click', function(evt) {
+              console.log('Clicked');
+              var textField = document.querySelector("#textField");
+              clicked = !clicked;
+              if (clicked) {
+                //pos = camera.getAttribute("position").toString();
+                textField.setAttribute('text', {"value": "Clicked"});
+              }
+              else {
+                textField.setAttribute('text', {"value": "Unclicked"});
+              }
+              
+            });
+          }
+        });
+        </script>
+    </head>
+
+  <body>
+    <a-scene click-listener>
+            
+      <a-assets>
+        <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossorigin="anonymous">
+
+      </a-assets>
+
+      <a-entity light="type: ambient"></a-entity>
+      <a-sky src="#skyTexture" theta-length="90" radius="30"></a-sky>
+        <a-entity id="ground" type="background" static-body
+        geometry="primitive: cylinder; radius: 30; height: 0.1" 
+                              position="0 0 0" 
+                              material="shader: flat; color: #424949">
+        </a-entity>
+       
+      <a-entity id="player"
+				camera="userHeight: 1.6"
+				wasd-controls
+				look-controls
+				restrict-position
+      >
+      </a-entity>
+      <a-entity gearvr-controls></a-entity>
+      <a-text id="textField" position="0 1.8 -2" value="Hello World"></a-text>
+    </a-scene>
+  </body>
+</html>
